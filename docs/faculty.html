@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>Faculty Dashboard — Attendly</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="faculty">
+  <header class="topbar app-topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>Attendly</span></a>
+    <nav class="main-nav" aria-label="Main navigation"><a class="active" href="faculty.html">Faculty</a><a href="student.html">Student check-in</a></nav>
+    <div class="profile-chip"><span class="avatar">FC</span><span class="profile-name">Faculty demo</span></div>
+  </header>
+
+  <main class="app-shell">
+    <section class="page-heading">
+      <div><div class="eyebrow">FACULTY WORKSPACE</div><h1>Good morning, Faculty</h1><p>Here’s what’s happening with your classes today.</p></div>
+      <div class="date-pill"><span aria-hidden="true">◷</span><span id="today-label">Today</span></div>
+    </section>
+
+    <section class="stat-grid" aria-label="Attendance overview">
+      <article class="stat-card"><div class="stat-top"><span>Enrolled students</span><span class="stat-icon blue">♧</span></div><strong id="stat-students">24</strong><small>Across your active classes</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Present today</span><span class="stat-icon green">✓</span></div><strong id="stat-present">18</strong><small><span class="positive">75%</span> attendance rate</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Classes today</span><span class="stat-icon violet">▦</span></div><strong id="stat-classes">3</strong><small>One session currently active</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Late arrivals</span><span class="stat-icon amber">◷</span></div><strong id="stat-late">2</strong><small>Marked after session began</small></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel session-panel">
+        <div class="panel-heading"><div><div class="eyebrow">QUICK ACTION</div><h2>Start an attendance session</h2><p>Choose a class and share its unique check-in QR.</p></div><span class="panel-icon">▦</span></div>
+        <form id="session-form" class="session-form">
+          <label for="class-select">Class</label>
+          <div class="input-with-icon"><span aria-hidden="true">▤</span><select id="class-select" required><option value="CSE 203 · Data Structures">CSE 203 · Data Structures</option><option value="CSE 315 · Database Systems">CSE 315 · Database Systems</option><option value="MAT 221 · Discrete Mathematics">MAT 221 · Discrete Mathematics</option></select></div>
+          <button class="button button-primary" type="submit"><span aria-hidden="true">＋</span> Create session</button>
+        </form>
+        <div id="active-session" class="active-session hidden" aria-live="polite">
+          <div class="session-status"><span class="live-dot"></span> SESSION LIVE <span id="session-timer" class="timer">10:00</span></div>
+          <div class="qr-layout"><div class="qr-box"><img id="session-qr" alt="QR code for the active class session"><span class="qr-caption">Scan to check in</span></div><div class="qr-details"><span class="detail-label">CLASS</span><strong id="session-class">—</strong><span class="detail-label">SESSION CODE</span><strong class="session-code" id="session-code">------</strong><span class="detail-label">SHARE THIS PAGE</span><code id="student-link">student.html</code><button id="copy-link" class="text-button" type="button">Copy check-in link</button></div></div>
+          <button id="end-session" class="button button-secondary full-width" type="button">End session</button>
+        </div>
+      </article>
+
+      <article class="panel classes-panel">
+        <div class="panel-heading"><div><div class="eyebrow">YOUR SCHEDULE</div><h2>Today’s classes</h2></div><a class="small-link" href="#attendance">View attendance <span aria-hidden="true">→</span></a></div>
+        <div class="class-list">
+          <div class="class-row"><span class="class-color color-blue"></span><div class="class-info"><strong>CSE 203 <span class="class-live">LIVE</span></strong><small>Data Structures · Room B204</small></div><span class="class-time">09:00 AM</span></div>
+          <div class="class-row"><span class="class-color color-teal"></span><div class="class-info"><strong>CSE 315</strong><small>Database Systems · Lab 1</small></div><span class="class-time">11:30 AM</span></div>
+          <div class="class-row"><span class="class-color color-violet"></span><div class="class-info"><strong>MAT 221</strong><small>Discrete Mathematics · Room A102</small></div><span class="class-time">02:00 PM</span></div>
+        </div>
+        <div class="class-summary"><div><strong>24</strong><span>students enrolled</span></div><div><strong>3</strong><span>classes scheduled</span></div><div><strong>75%</strong><span>average attendance</span></div></div>
+      </article>
+    </section>
+
+    <section id="attendance" class="panel attendance-panel">
+      <div class="panel-heading attendance-heading"><div><div class="eyebrow">LIVE OVERVIEW</div><h2>Recent attendance</h2><p>Demo records shown below. Check-ins on this device appear here.</p></div><button id="export-csv" class="button button-outline" type="button"><span aria-hidden="true">⇩</span> Export CSV</button></div>
+      <div class="table-tools"><label class="search-box"><span aria-hidden="true">⌕</span><input id="record-search" type="search" placeholder="Search by student or class" aria-label="Search attendance"></label><span class="table-count" id="record-count">5 records</span></div>
+      <div class="table-scroll"><table><thead><tr><th>STUDENT</th><th>CLASS</th><th>DATE</th><th>CHECK-IN</th><th>STATUS</th></tr></thead><tbody id="attendance-rows"></tbody></table></div>
+      <div id="empty-records" class="empty-state hidden">No attendance matches that search.</div>
+    </section>
+    <p class="demo-notice"><span aria-hidden="true">ⓘ</span> This is a portfolio demo. Records are stored only in this browser and do not sync between devices.</p>
+  </main>
+  <footer class="site-footer"><a href="index.html">← All portals</a><span>Attendly · Faculty portal</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
+
