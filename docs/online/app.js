@@ -107,6 +107,7 @@ function initAuth() {
     : "Sign in to check in to your class or create a student account.";
   if (role === "student") toggle.classList.remove("hidden");
   else facultyNote.classList.remove("hidden");
+  forgot.classList.remove("hidden");
   if (role === "student") getPendingCheckin();
 
   document.getElementById("toggle-signup").addEventListener("click", function () {
