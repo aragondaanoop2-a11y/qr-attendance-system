@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>Student Check-in — Attendly</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="student">
+  <header class="topbar app-topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>Attendly</span></a>
+    <nav class="main-nav" aria-label="Main navigation"><a href="faculty.html">Faculty</a><a class="active" href="student.html">Student check-in</a></nav>
+    <div class="secure-chip"><span aria-hidden="true">◈</span> Secure check-in</div>
+  </header>
+
+  <main class="student-shell">
+    <section class="student-intro"><div class="eyebrow">STUDENT PORTAL</div><h1>You’re one scan<br>away from <span>present.</span></h1><p>Scan the QR code displayed by your faculty member, then enter your student ID to record your attendance.</p></section>
+    <section class="checkin-card">
+      <div id="checkin-form-view">
+        <div class="checkin-title"><div class="checkin-icon">⌁</div><div><h2>Class check-in</h2><p>It only takes a few seconds.</p></div></div>
+        <div id="session-banner" class="session-banner"><span class="live-dot"></span><div><strong id="session-banner-title">Ready for check-in</strong><small id="session-banner-subtitle">Enter the session code shown on the faculty screen.</small></div></div>
+        <form id="checkin-form">
+          <label for="student-id">Student ID</label><div class="field-wrap"><span aria-hidden="true">♙</span><input id="student-id" name="studentId" autocomplete="off" placeholder="e.g. STU-2401" required></div>
+          <label for="student-name">Your name</label><div class="field-wrap"><span aria-hidden="true">Aa</span><input id="student-name" name="studentName" autocomplete="name" placeholder="Enter your full name" required></div>
+          <label for="checkin-code">Session code</label><div class="field-wrap code-field"><span aria-hidden="true">#</span><input id="checkin-code" name="sessionCode" autocomplete="one-time-code" placeholder="6-digit code" inputmode="numeric" maxlength="6" required></div>
+          <button class="button button-primary checkin-button" type="submit">Confirm attendance <span aria-hidden="true">→</span></button>
+        </form>
+        <div class="privacy-note"><span aria-hidden="true">◈</span> Your details are used only for this class check-in.</div>
+      </div>
+      <div id="checkin-success" class="success-view hidden" aria-live="polite"><div class="success-mark">✓</div><div class="eyebrow">CHECK-IN COMPLETE</div><h2>You’re marked present!</h2><p id="success-copy">Your attendance has been recorded for this session.</p><div class="success-receipt"><span>STUDENT</span><strong id="receipt-student">—</strong><span>CLASS</span><strong id="receipt-class">—</strong><span>CHECK-IN TIME</span><strong id="receipt-time">—</strong></div><button id="another-checkin" class="button button-secondary full-width" type="button">Back to check-in</button></div>
+    </section>
+    <div class="help-note"><strong>Can’t scan the QR?</strong><span>Ask your faculty member for the 6-digit session code and enter it above.</span></div>
+    <p class="demo-notice student-demo-notice"><span aria-hidden="true">ⓘ</span> Demo mode: attendance is saved in this browser only. Use sample details for demonstrations.</p>
+  </main>
+  <footer class="site-footer"><a href="index.html">← All portals</a><span>Attendly · Student portal</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
+
