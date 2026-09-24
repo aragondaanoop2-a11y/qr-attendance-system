@@ -8,7 +8,11 @@ This is the shared online version of Attendly. Faculty and students can use it f
 2. In the Supabase project, open **SQL Editor**, choose **New query**, paste the whole contents of **setup.sql**, and click **Run**. This creates the profiles, sessions, private QR tokens, attendance records, role rules, and protected database functions.
 3. Open **Project Settings → API Keys** (or **Settings → API** in older dashboards). Copy the **Project URL** and the **publishable key**. An older project may call this the **anon/public key**.
 4. Edit **config.js** in the GitHub repository. Put those two values between the quotes for **supabaseUrl** and **publishableKey**. Save and commit the change. The URL and publishable/anon key are intended for browser use when row-level security is enabled. Never copy a **secret** or **service_role** key into GitHub or this website.
-5. In Supabase, open **Authentication → URL Configuration**. Set **Site URL** to the online portal home, for example https://aragondaanoop2-a11y.github.io/qr-attendance-system/online/. Add the exact URL https://aragondaanoop2-a11y.github.io/qr-attendance-system/online/auth.html to **Redirect URLs**.
+5. In Supabase, open **Authentication → URL Configuration**. Set **Site URL** to https://aragondaanoop2-a11y.github.io/qr-attendance-system/online/. Add these URLs to **Redirect URLs**, one per line:
+
+   https://aragondaanoop2-a11y.github.io/qr-attendance-system/online/auth.html
+   https://aragondaanoop2-a11y.github.io/qr-attendance-system/online/auth.html?role=student
+   https://aragondaanoop2-a11y.github.io/qr-attendance-system/online/auth.html?role=faculty
 6. Create the faculty account in **Authentication → Users → Add user**. Enter the faculty email and a strong password. Then open **SQL Editor** and run the following command, replacing the sample email with that same email:
 
    UPDATE public.qr_profiles AS p
