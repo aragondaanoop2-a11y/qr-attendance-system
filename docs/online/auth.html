@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>Sign in — Attendly</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="auth">
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>Attendly</span></a>
+    <a class="quiet-link" href="README.md">Setup guide</a>
+  </header>
+  <main class="auth-shell">
+    <a class="back-link" href="index.html">← All portals</a>
+    <section class="auth-card">
+      <div class="eyebrow" id="auth-eyebrow">SECURE PORTAL</div>
+      <h1 id="auth-title">Sign in</h1>
+      <p id="auth-subtitle">Use your account to continue.</p>
+      <div id="config-warning" class="notice notice-warning hidden"></div>
+      <div id="auth-message" class="notice hidden" role="status" aria-live="polite"></div>
+      <form id="auth-form">
+        <div id="student-fields" class="hidden">
+          <label for="full-name">Full name</label>
+          <input id="full-name" name="fullName" autocomplete="name" maxlength="100" placeholder="Your name">
+          <label for="student-id">Student ID</label>
+          <input id="student-id" name="studentId" autocomplete="off" maxlength="40" placeholder="Your college student ID">
+        </div>
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@example.com">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters">
+        <button id="submit-auth" class="button button-primary full-width" type="submit">Sign in</button>
+      </form>
+      <form id="password-update-form" class="hidden">
+        <label for="new-password">New password</label>
+        <input id="new-password" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
+        <button class="button button-primary full-width" type="submit">Save new password</button>
+      </form>
+      <button id="forgot-password" class="text-button hidden" type="button">Forgot password?</button>
+      <div id="student-signup-toggle" class="auth-toggle hidden">
+        New student? <button id="toggle-signup" class="text-button" type="button">Create an account</button>
+      </div>
+      <p id="faculty-note" class="small-note hidden">Faculty accounts are created and enabled by the project owner. Ask your faculty administrator if you need an account.</p>
+      <p class="small-note">Your sign-in is protected by Supabase. Use only your own account.</p>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
