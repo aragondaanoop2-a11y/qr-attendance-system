@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="Shared QR attendance portal for faculty and students.">
+  <title>Attendly Cloud — QR Attendance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>Attendly</span></a>
+    <a class="quiet-link" href="README.md">Setup guide</a>
+  </header>
+  <main class="home-shell">
+    <div class="eyebrow"><span class="live-dot"></span> ATTENDLY CLOUD</div>
+    <h1>One attendance system.<br><span>Two simple portals.</span></h1>
+    <p class="home-copy">Start a class session, share its QR code, and record attendance from any network.</p>
+    <div class="portal-grid">
+      <a class="portal-card" href="auth.html?role=faculty">
+        <span class="card-kicker">FOR EDUCATORS</span>
+        <span class="portal-symbol">▦</span>
+        <h2>Faculty portal</h2>
+        <p>Start sessions, show the check-in QR, review records, and export attendance.</p>
+        <span class="card-action">Faculty sign in <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="portal-card student-card" href="auth.html?role=student">
+        <span class="card-kicker">FOR LEARNERS</span>
+        <span class="portal-symbol">⌁</span>
+        <h2>Student portal</h2>
+        <p>Create a student account, sign in, and check in from the faculty QR code.</p>
+        <span class="card-action">Student sign in <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+    <div class="setup-note"><strong>First time here?</strong> The project owner must connect Supabase before sign-in works. <a href="README.md">Open the step-by-step setup guide</a>.</div>
+    <p class="security-note">Attendance is shared through the Supabase project configured by your institution.</p>
+  </main>
+  <footer class="site-footer"><span>Attendly Cloud</span><span>For faculty and students</span></footer>
+</body>
+</html>
