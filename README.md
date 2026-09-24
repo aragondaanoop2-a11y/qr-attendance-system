@@ -2,6 +2,10 @@
 
 A Java mini project for CSE203. Faculty use a JavaFX desktop app to manage students, open time-limited attendance sessions, display QR codes, and export attendance records. Students scan the QR code with a phone on the same Wi-Fi network and submit their pre-registered student ID.
 
+## Cloud portals for different networks
+
+The shared Faculty and Student portals are in docs/online/. They use Supabase Auth and a hosted PostgreSQL database, so users can sign in from different networks and attendance appears in the faculty portal. Follow docs/online/README.md to create your Supabase project, apply the database setup, and connect the GitHub Pages site. The website will not accept logins until you connect your own Supabase project. Never publish a secret or service_role key.
+
 ## Web demo
 
 The static Faculty and Student portal demo is in [`docs/`](docs/). It can be hosted with GitHub Pages. The demo stores data in the current browser only; it does not synchronize attendance between a student's phone and the faculty computer. Use the Java desktop application below for the full local-network attendance workflow. The web demo uses fictitious sample students; do not enter real student information.
@@ -76,4 +80,3 @@ src/main/resources/edu/cse203/qrattendance/app.css
 | Documentation and viva | This setup guide and source comments |
 
 This is a classroom demonstration project. The same-network HTTP check-in is intended for a local demo; use HTTPS and institution-managed identity before exposing it outside a trusted campus network.
-
