@@ -5,6 +5,11 @@ const configured = Boolean(settings.supabaseUrl && settings.publishableKey);
 const supabase = configured ? createClient(settings.supabaseUrl, settings.publishableKey) : null;
 const page = document.body.dataset.page;
 const TOKEN_STORE = "attendly.pendingCheckin";
+const initialAuthQuery = new URLSearchParams(location.search);
+const initialAuthHash = new URLSearchParams(location.hash.replace(/^#/, ""));
+const hasAuthCallback = Boolean(initialAuthHash.toString() || initialAuthQuery.has("code") || initialAuthQuery.has("type"));
+const isPasswordRecoveryCallback =
+  initialAuthQuery.get("type") === "recovery" || initialAuthHash.get("type") === "recovery";
 
 function setNotice(element, message, kind) {
   if (!element) return;
@@ -124,6 +129,18 @@ function initAuth() {
 
   if (!supabase) return;
 
+  function showPasswordUpdateForm() {
+    form.classList.add("hidden");
+    passwordUpdateForm.classList.remove("hidden");
+    toggle.classList.add("hidden");
+    forgot.classList.add("hidden");
+    facultyNote.classList.add("hidden");
+    setNotice(message, "Choose a new password for your account.", "warning");
+    document.getElementById("auth-title").textContent = "Reset your password";
+  }
+
+  if (isPasswordRecoveryCallback) showPasswordUpdateForm();
+
   passwordUpdateForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     const password = document.getElementById("new-password").value;
@@ -141,12 +158,7 @@ function initAuth() {
 
   supabase.auth.onAuthStateChange(function (event) {
     if (event === "PASSWORD_RECOVERY") {
-      form.classList.add("hidden");
-      passwordUpdateForm.classList.remove("hidden");
-      toggle.classList.add("hidden");
-      forgot.classList.add("hidden");
-      setNotice(message, "Choose a new password for your account.", "warning");
-      document.getElementById("auth-title").textContent = "Reset your password";
+      showPasswordUpdateForm();
     }
   });
 
@@ -211,6 +223,12 @@ function initAuth() {
   });
 
   supabase.auth.getSession().then(async function (result) {
+    if (hasAuthCallback) {
+      if (isPasswordRecoveryCallback && !result.data.session) {
+        setNotice(message, "This password-reset link may have expired. Request a new reset email and open its newest link.", "error");
+      }
+      return;
+    }
     if (!result.data.session) return;
     try {
       const profile = await getSignedInProfile();
